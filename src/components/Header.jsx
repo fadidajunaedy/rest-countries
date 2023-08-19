@@ -24,9 +24,9 @@ const Header = () => {
 
     return (
         <div className="navbar bg-base-100 shadow-md">
-            <div className="container">
+            <div className="container max-w-[1200px] mx-auto px-4 md:px-0">
                 <div className="flex-1">
-                    <a className="btn btn-ghost normal-case text-xl">Where in the world?</a>
+                    <a className="normal-case text-xl font-bold">Where in the world?</a>
                 </div>
                 <div className="flex-none">
                     <button className="btn btn-square btn-ghost">
