@@ -1,3 +1,5 @@
+import { BsSearch } from "react-icons/bs"
+
 const Filter = ({ searchInput }) => {
     return (
         <div className="max-w-[1200px] px-4 md:px-0 mx-auto py-6 flex flex-wrap justify-between gap-4">

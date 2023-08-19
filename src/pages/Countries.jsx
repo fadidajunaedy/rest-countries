@@ -3,6 +3,7 @@ import axios from 'axios'
 import Filter from '../components/Filter'
 import Card from '../components/Card'
 import Spinner from '../components/Spinner'
+import NotFound from '../components/NotFound'
 
 const Countries = () => {
     const [loading, setLoading] = useState(false)
@@ -10,20 +11,36 @@ const Countries = () => {
     const [keyword, setKeyword] = useState("")
 
     const fetchCountries = async () => {
-        const data = await axios.get("https://restcountries.com/v3.1/all")
-        setCountries(data.data)
-        setLoading(false)
-    };
-
-    const fetchCountriesBySearch = async (name) => {
-        const data = await axios.get("https://restcountries.com/v3.1/name/" + name)
-        setCountries(data.data)
-        setLoading(false)
-    };
+        try {
+            const data = await axios.get("https://restcountries.com/v3.1/all")
+            setCountries(data.data)
+            setLoading(false)
+        } catch (err) {
+            console.log(err)
+        }
+    }
 
     const getSearchInput = (e) => {
-        setKeyword(e.target.value)
+        setTimeout(() => {
+            setKeyword(e.target.value)
+        }, 3000)
     }
+
+    const fetchCountriesBySearch = async (name) => {
+        try {
+            const data = await axios.get("https://restcountries.com/v3.1/name/" + name)
+            setCountries(data.data)
+            setLoading(false)
+        } catch (err) {
+            setTimeout(() => {
+                setCountries([])
+                setLoading(false)
+                console.log(err)
+            }, 3000)
+        }
+    }
+
+
 
     useEffect(() => {
         setLoading(true)
@@ -51,6 +68,7 @@ const Countries = () => {
                     ))}
                 </section>
             }
+            {countries == 0 && <NotFound />}
         </>
     )
 }
