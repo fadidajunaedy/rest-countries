@@ -1,17 +1,35 @@
-import { BsSearch } from "react-icons/bs"
-
-const Filter = ({ searchInput }) => {
+const Filter = ({ searchInput, filterInput }) => {
+    const regions = [
+        {
+            value: "africa",
+            label: "Africa"
+        },
+        {
+            value: "america",
+            label: "America"
+        },
+        {
+            value: "asia",
+            label: "Asia"
+        },
+        {
+            value: "europe",
+            label: "Europe"
+        },
+        {
+            value: "oceania",
+            label: "Oceania"
+        }
+    ]
     return (
         <div className="max-w-[1200px] px-4 md:px-0 mx-auto py-6 flex flex-wrap justify-between gap-4">
             <input type="text" placeholder="Search for a country..." className="input input-bordered w-full md:max-w-xs"
                 onChange={searchInput} />
-            <select className="select select-bordered w-full max-w-xs">
-                <option disabled selected>Filter by Region</option>
-                <option value="africa">Africa</option>
-                <option value="america">America</option>
-                <option value="asia">Asia</option>
-                <option value="europe">Europe</option>
-                <option value="oceania">Oceania</option>
+            <select className="select select-bordered w-full max-w-xs" onChange={filterInput} defaultValue={''}>
+                <option selected value={''}>Filter by Region</option>
+                {regions.map((region) => (
+                    <option value={region.value}>{region.label}</option>
+                ))}
             </select>
         </div>
     )
