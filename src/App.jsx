@@ -1,7 +1,8 @@
 import './App.css'
 import { Routes, Route } from 'react-router-dom'
-import Countries from './pages/Countries'
 import Header from './components/Header'
+import Countries from './pages/Countries'
+import Country from './pages/Country'
 
 const App = () => {
   return (
@@ -9,7 +10,7 @@ const App = () => {
       <Header />
       <Routes>
         <Route exact path="/" element={<Countries />} />
-        {/* <Route path="/countries/:name" element={<Country />} /> */}
+        <Route path="/country/:name" element={<Country />} />
       </Routes>
     </>
   )

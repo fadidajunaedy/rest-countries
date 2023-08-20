@@ -26,9 +26,9 @@ const Filter = ({ searchInput, filterInput }) => {
             <input type="text" placeholder="Search for a country..." className="input input-bordered w-full md:max-w-xs"
                 onChange={searchInput} />
             <select className="select select-bordered w-full max-w-xs" onChange={filterInput} defaultValue={''}>
-                <option selected value={''}>Filter by Region</option>
-                {regions.map((region) => (
-                    <option value={region.value}>{region.label}</option>
+                <option value={''}>Filter by Region</option>
+                {regions.map((region, index) => (
+                    <option key={index} value={region.value}>{region.label}</option>
                 ))}
             </select>
         </div>
