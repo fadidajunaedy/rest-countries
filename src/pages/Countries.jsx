@@ -29,7 +29,8 @@ const Countries = () => {
             setCountries(data.data)
             setLoading(false)
         } catch (err) {
-            console.log(err)
+            console.error("Error fetching country data: ", err);
+            setLoading(false);
         }
     }
 
@@ -42,7 +43,7 @@ const Countries = () => {
             setTimeout(() => {
                 setCountries([])
                 setLoading(false)
-                console.log(err)
+                console.error("Error fetching country data: ", err);
             }, 2000)
         }
     }
@@ -55,8 +56,8 @@ const Countries = () => {
         } catch (err) {
             setTimeout(() => {
                 setCountries([])
-                setLoading(false)
-                console.log(err)
+                console.error("Error fetching country data: ", err);
+                setLoading(false);
             }, 2000)
         }
     }
@@ -76,7 +77,7 @@ const Countries = () => {
     return (
         <>
             <Filter searchInput={getSearchInput} filterInput={getFilteredInput} />
-            {loading ? <Spinner /> :
+            {loading ? <Spinner /> : countries.length > 0 ?
                 <section className='max-w-[1200px] mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 px-4 md:px-0'>
                     {countries.map((country, index) => (
                         <Card
@@ -88,9 +89,8 @@ const Countries = () => {
                             capital={country.capital}
                         />
                     ))}
-                </section>
+                </section> : <NotFound />
             }
-            {countries == 0 && <NotFound />}
         </>
     )
 }
